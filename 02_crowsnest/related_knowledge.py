@@ -86,3 +86,32 @@ print(article)
 print('Ahoy, Captain, {} {} off the larboard bow!'.format(article, word))
 # f-string
 print(f'Ahoy, Captain, {article} {word} off the larboard bow!')
+
+# @ 2.3.2 The main() thing
+word = 'octopus'
+
+# @ 2.3.3 Classifying the first character of a word
+print(word[0])
+# check if the first character is in the string of vowels, both lower- and uppercase:
+print(word[0] in 'aeiouAEIOU')
+# make this shorter:
+print(word[0].lower() in 'aeiou')
+
+# x in y form:
+print('a' in 'aeiou')
+
+article = 'an' if word[0].lower() in 'aeiou' else 'a'
+print(article)
+
+word = 'galleon'
+article = 'an' if word[0].lower() in 'aeiou' else 'a'
+print(article)
+
+# @ 2.3.4 Printing the results
+# str.format():
+article = 'a'
+word = 'ketch'
+print('Ahoy, Captain, {} {} off the larboard bow!'.format(article, word))
+
+# f-string:
+print(f'Ahoy, Captain, {article} {word} off the larboard bow!')
