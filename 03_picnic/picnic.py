@@ -2,7 +2,7 @@
 """
 Author : macbookpro16 <macbookpro16@localhost>
 Date   : 2023-12-23
-Purpose: Rock the Casbah
+Purpose: Picnic game
 """
 
 import argparse
@@ -16,7 +16,7 @@ def get_args():
         description='Picnic game',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('str',
+    parser.add_argument('item',
                         metavar='str',
                         nargs='+',
                         help='Item(s) to bring')
@@ -34,7 +34,22 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    print(args.str)
+    items = args.item
+    num = len(items)
+
+    if args.sorted:
+        items.sort()
+
+    bringing = ''
+    if num == 1:
+        bringing = items[0]
+    elif num == 2:
+        bringing = ' and '.join(items)
+    else:
+        items[-1] = 'and ' + items[-1]
+        bringing = ', '.join(items)
+
+    print('You are bringing {}.'.format(bringing))
 
 
 # --------------------------------------------------
