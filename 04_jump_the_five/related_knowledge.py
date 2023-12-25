@@ -71,3 +71,104 @@ print(answers)
 
 answers['favorite_color'] = 'red'
 print(answers)
+
+# @ 4.2 Writing jump.py
+jumper = {'1': '9',
+          '2': '8',
+          '3': '7',
+          '4': '6',
+          '5': '0',
+          '6': '4',
+          '7': '3',
+          '8': '2',
+          '9': '1',
+          '0': '5'}
+
+assert jumper['1'] == '9'
+assert jumper['5'] == '0'
+
+for char in 'ABC123':
+    print(char)
+
+# @ 4.4.2 Using a dict for encoding
+print(jumper['1'])
+
+print(type('4'))
+print(type(4))
+print(type(int('4')))
+
+# @ 4.4.2 Various ways to process items in a series
+# @@ METHOD 1: USING A FOR LOOP TO PRINT() EACH CHARACTER
+text = 'ABC123'
+for char in text:
+    print(char, char in jumper)
+
+for char in text:
+    print(char, jumper[char] if char in jumper else char)
+
+# print(jumper['A']) # KeyError 'A'
+
+print(jumper.get('A'))
+
+for char in text:
+    print(char, jumper.get(char))
+
+print(jumper.get('A', 'A'))
+print(jumper.get('5', '5'))
+
+for char in text:
+    print(jumper.get(char, char))
+
+for char in text:
+    print(jumper.get(char, char), end='')
+print()
+
+# @@ METHOD 2: USING A FOR LOOP TO BUILD A NEW STRING
+new_text = ''
+
+new_text += 'a'
+assert new_text == 'a'
+new_text += 'b'
+assert new_text == 'ab'
+
+new_text = ''
+for char in text:
+    new_text += jumper.get(char, char)
+
+print(new_text)
+
+# @@ METHOD 3: USING A FOR LOOP TO BUILD A NEW LIST
+new_text = []
+
+for char in text:
+    new_text.append(jumper.get(char, char))
+print(''.join(new_text))
+
+new_text = []
+for char in text:
+    new_text += jumper.get(char, char)
+print(''.join(new_text))
+
+# @@ METHOD 4: USING A FOR LOOP INTO A LIST COMPREHENSION
+print(''.join([jumper.get(char, char) for char in text]))
+
+text = '867-5309'
+print([jumper.get(char, char) for char in text])
+print(''.join([jumper.get(char, char) for char in text]))
+
+# @@ METHOD 5: USING THE STR.TRANSLATE() FUNCTION
+text = 'Jenny = 867-5309'
+print(text.translate(str.maketrans(jumper)))
+
+# @ 4.4.4 (Not) using str.replace()
+text = '1234567890'
+text = text.replace('1', '9')
+print(text)
+text = text.replace('9', '1')
+print(text)
+
+text = '1234567890'
+for n in jumper.keys():
+    text = text.replace(n, jumper[n])
+
+print(text)
